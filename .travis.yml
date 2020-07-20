@@ -1,0 +1,6 @@
+services:
+  - docker
+
+script:
+  #TODO: pick version from build.gradle
+  - MAILER_VERSION=v1.0.0 ./manage build

@@ -1,0 +1,39 @@
+{
+  "properties": [
+    {
+      "name": "project.name",
+      "type": "java.lang.String",
+      "description": "Project name."
+    },
+    {
+      "name": "project.domain",
+      "type": "java.lang.String",
+      "description": "Project domain."
+    },
+    {
+      "name": "mailer.debug",
+      "type": "java.lang.Boolean",
+      "description": "Shows if debug info should be printed in log."
+    },
+    {
+      "name": "mailer.verification_letter_id",
+      "type": "java.lang.String",
+      "description": "Letter ID for verification email."
+    },
+    {
+      "name": "mailer.pass_changed_letter_id",
+      "type": "java.lang.String",
+      "description": "Letter ID for password change notification email."
+    },
+    {
+      "name": "mailer.reset_pass_letter_id",
+      "type": "java.lang.String",
+      "description": "Letter ID for password reset email."
+    },
+    {
+      "name": "spring.mail.is_ssl",
+      "type": "java.lang.String",
+      "description": "If true secure connection will be used."
+    }
+  ]
+}

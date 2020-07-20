@@ -1,0 +1,47 @@
+#!/bin/bash
+
+cur_script="$(realpath $0)"
+cur_directory="$(dirname $cur_script)"
+
+registry="${MAILER_REGISTRY}"
+if [ -z "${version}" ]; then
+    registry="hub.docker.com"
+fi
+
+base_url="${MAILER_IMAGE_BASE_URL}"
+if [ -z "${base_url}" ]; then
+    base_url="${registry}/maildealru"
+fi
+
+image="${MAILER_IMAGE}"
+if [ -z "${image}" ]; then
+    image="${base_url}/mailer"
+fi
+
+version="${MAILER_VERSION}"
+if [ -z "${version}" ]; then
+    version="$($cur_directory/gradlew -q printVersion)"
+fi
+
+tag="${image}:${version}"
+
+case "$1" in
+login)
+    docker login ${@:2} "${registry}"
+    ;;
+logout)
+    docker logout "${registry}"
+    ;;
+build)
+    docker build ${@:2} -t "${tag}" "${cur_directory}"
+    ;;
+push)
+    docker push "${tag}"
+    ;;
+pull)
+    docker pull "${tag}"
+    ;;
+*)
+    echo $"Usage: $0 {login|logout|build|push|pull}"
+    exit 2
+esac
